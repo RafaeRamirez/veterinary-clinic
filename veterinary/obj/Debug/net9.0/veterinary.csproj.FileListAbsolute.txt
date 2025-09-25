@@ -1,0 +1,14 @@
+C:\Users\User\Desktop\veterinary-clinic\veterinary\bin\Debug\net9.0\veterinary.exe
+C:\Users\User\Desktop\veterinary-clinic\veterinary\bin\Debug\net9.0\veterinary.deps.json
+C:\Users\User\Desktop\veterinary-clinic\veterinary\bin\Debug\net9.0\veterinary.runtimeconfig.json
+C:\Users\User\Desktop\veterinary-clinic\veterinary\bin\Debug\net9.0\veterinary.dll
+C:\Users\User\Desktop\veterinary-clinic\veterinary\bin\Debug\net9.0\veterinary.pdb
+C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\veterinary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\veterinary.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\veterinary.AssemblyInfo.cs
+C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\veterinary.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\veterinary.dll
+C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\refint\veterinary.dll
+C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\veterinary.pdb
+C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\veterinary.genruntimeconfig.cache
+C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\ref\veterinary.dll
