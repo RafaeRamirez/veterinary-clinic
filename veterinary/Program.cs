@@ -27,7 +27,9 @@ class Program
             Console.WriteLine(" 8  delete all pet by ID");
             Console.WriteLine(" 9  update client by ID");
             Console.WriteLine(" 10 filter clients by age or pet age");
-            Console.WriteLine("10. Exit");
+            Console.WriteLine(" 11 project only certain customer data");
+            Console.WriteLine(" 12 list pets ordered by age");
+            Console.WriteLine("13. Exit");
             Console.Write("Choose an option: ");
 
             string option = Console.ReadLine() ?? "";
@@ -72,8 +74,15 @@ class Program
                 case "10":
                     service.filterCustomerByAge(customers);
                     break;
-
                 case "11":
+                    service.CustomerData(customers);
+                    break;
+
+                case "12":
+                    service.ListPetsOrdered(customers);
+                    break;
+
+                case "13":
                     Console.WriteLine("\nExiting system... Goodbye!");
                     exit = true;
                     break;

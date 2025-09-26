@@ -12,3 +12,4 @@ C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\refint\veter
 C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\veterinary.pdb
 C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\veterinary.genruntimeconfig.cache
 C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\ref\veterinary.dll
+C:\Users\User\Desktop\veterinary-clinic\veterinary\obj\Debug\net9.0\veterinary.sourcelink.json

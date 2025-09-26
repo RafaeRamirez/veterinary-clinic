@@ -35,7 +35,7 @@ namespace Veterinary.Services
             };
 
             customers.Add(customer);
-            Console.WriteLine("\n✅ Registered Customer:");
+            Console.WriteLine("\n Registered Customer:");
             Console.WriteLine(customer.ToString());
         }
 
@@ -68,7 +68,7 @@ namespace Veterinary.Services
             var found = FindCustomerById(customers, id);
             if (found != null)
             {
-                Console.WriteLine("\n✅ Found Customer:");
+                Console.WriteLine("\n Found Customer:");
                 Console.WriteLine(found.ToString());
             }
             else
@@ -120,7 +120,7 @@ namespace Veterinary.Services
 
             customer.Pets.Add(pet);
 
-            Console.WriteLine("\n✅ Registered Pet:");
+            Console.WriteLine("\n Registered Pet:");
             Console.WriteLine(pet.ToString());
         }
 
@@ -148,7 +148,7 @@ namespace Veterinary.Services
                 return;
             }
 
-            Console.WriteLine($"\n🐾 Pets of {customer.Name} (CustomerID: {customer.Id}):");
+            Console.WriteLine($"\n Pets of {customer.Name} (CustomerID: {customer.Id}):");
             foreach (var p in customer.Pets)
             {
                 Console.WriteLine(p.ToString());
@@ -172,7 +172,7 @@ namespace Veterinary.Services
 
             if (pet != null)
             {
-                Console.WriteLine("\n✅ Found Pet:");
+                Console.WriteLine("\n Found Pet:");
                 Console.WriteLine(pet.ToString());
             }
             else
@@ -225,11 +225,11 @@ namespace Veterinary.Services
             if (customer != null)
             {
                 customers.Remove(customer);
-                Console.WriteLine($"✅ Deleted: {customer.Name} (Id = {id})");
+                Console.WriteLine($" Deleted: {customer.Name} (Id = {id})");
             }
             else
             {
-                Console.WriteLine($"❌ Customer with Id = {id} not found.");
+                Console.WriteLine($" Customer with Id = {id} not found.");
             }
         }
 
@@ -243,7 +243,7 @@ namespace Veterinary.Services
             var customer = customers.FirstOrDefault(c => c.Id == customerId);
             if (customer == null)
             {
-                Console.WriteLine($"❌ Customer with Id = {customerId} not found.");
+                Console.WriteLine($"Customer with Id = {customerId} not found.");
                 return;
             }
 
@@ -251,12 +251,12 @@ namespace Veterinary.Services
             var pet = customer.Pets.FirstOrDefault(p => p.Id == petId);
             if (pet == null)
             {
-                Console.WriteLine($"❌ Pet with Id = {petId} not found for this customer.");
+                Console.WriteLine($" Pet with Id = {petId} not found for this customer.");
                 return;
             }
 
             customer.Pets.Remove(pet);
-            Console.WriteLine($"✅ Deleted Pet: {pet.Name} (PetId = {pet.Id}) for Customer {customer.Name} (CustomerId = {customer.Id})");
+            Console.WriteLine($" Deleted Pet: {pet.Name} (PetId = {pet.Id}) for Customer {customer.Name} (CustomerId = {customer.Id})");
         }
 
         public void UpdateCustomer(List<Customer> customers)
@@ -267,7 +267,7 @@ namespace Veterinary.Services
             var customer = customers.FirstOrDefault(x => x.Id == id);
             if (customer == null)
             {
-                Console.WriteLine($"❌ Customer with Id = {id} not found.");
+                Console.WriteLine($" Customer with Id = {id} not found.");
                 return;
             }
 
@@ -284,7 +284,7 @@ namespace Veterinary.Services
             if (!string.IsNullOrWhiteSpace(email)) customer.Email = email;
             if (!string.IsNullOrWhiteSpace(phone)) customer.Phone = phone;
 
-            Console.WriteLine($"✅ Updated: {customer.Name} (Id = {customer.Id})");
+            Console.WriteLine($" Updated: {customer.Name} (Id = {customer.Id})");
         }
         public void UpdatePet(List<Customer> customers)
         {
@@ -294,7 +294,7 @@ namespace Veterinary.Services
             var customer = customers.FirstOrDefault(c => c.Id == customerId);
             if (customer == null)
             {
-                Console.WriteLine($"❌ Customer with Id = {customerId} not found.");
+                Console.WriteLine($" Customer with Id = {customerId} not found.");
                 return;
             }
             if (customer.Pets.Count == 0)
@@ -306,7 +306,7 @@ namespace Veterinary.Services
             var pet = customer.Pets.FirstOrDefault(p => p.Id == petId);
             if (pet == null)
             {
-                Console.WriteLine($"❌ Pet with Id = {petId} not found for this customer.");
+                Console.WriteLine($" Pet with Id = {petId} not found for this customer.");
                 return;
             }
 
@@ -320,7 +320,7 @@ namespace Veterinary.Services
             if (!string.IsNullOrWhiteSpace(species)) pet.Species = species;
             if (int.TryParse(ageInput, out int age)) pet.Age = age;
             if (!string.IsNullOrWhiteSpace(symptom)) pet.Symptom = symptom;
-            Console.WriteLine($"✅ Updated Pet: {pet.Name} (Id = {pet.Id}) for Customer {customer.Name} (CustomerId = {customer.Id})");
+            Console.WriteLine($"  Updated Pet: {pet.Name} (Id = {pet.Id}) for Customer {customer.Name} (CustomerId = {customer.Id})");
 
         }
 
@@ -335,7 +335,7 @@ namespace Veterinary.Services
                 return;
             }
 
-            Console.WriteLine($"\n🐾 Customers with pets aged {age} or older:");
+            Console.WriteLine($"\n Customers with pets aged {age} or older:");
             foreach (var c in filteredCustomers)
             {
                 Console.WriteLine(c.ToString());
@@ -343,6 +343,74 @@ namespace Veterinary.Services
 
         }
 
+        public void CustomerData(List<Customer> customers)
+        {
+            Console.Write("Enter the pet ID: ");
+            int idWanted = int.Parse(Console.ReadLine());
 
+            var data = customers
+                .SelectMany(c => c.Pets, (c, p) => new { Customer = c, Pet = p })
+                .Where(cp => cp.Pet.Id == idWanted)
+                .Select(cp => new { cp.Pet.Name, cp.Customer.Email })
+                .ToList();
+
+            foreach (var d in data)
+            {
+                Console.WriteLine($"{d.Name} - {d.Email}");
+            }
+        }
+        public void ListPetsOrdered(List<Customer> customers)
+        {
+            Console.Write("Enter Customer ID: ");
+            int customerId = int.Parse(Console.ReadLine() ?? "0");
+
+            Console.Write("Enter sorting criterion (name/age/species): ");
+            string criterio = Console.ReadLine()?.ToLower() ?? "name";
+
+            Console.Write("Descending order? (y/n): ");
+            string descInput = Console.ReadLine()?.ToLower() ?? "n";
+            bool descendente = descInput == "y";
+
+
+            var customer = customers.FirstOrDefault(c => c.Id == customerId);
+            if (customer == null)
+            {
+                Console.WriteLine("⚠ Customer not found.");
+                return;
+            }
+
+            if (customer.Pets.Count == 0)
+            {
+                Console.WriteLine($"⚠ Customer '{customer.Name}' has no pets registered.");
+                return;
+            }
+
+            IEnumerable<Pet> orderedPets = customer.Pets;
+
+            switch (criterio)
+            {
+                case "name":
+                    orderedPets = descendente ? customer.Pets.OrderByDescending(p => p.Name)
+                                              : customer.Pets.OrderBy(p => p.Name);
+                    break;
+                case "age":
+                    orderedPets = descendente ? customer.Pets.OrderByDescending(p => p.Age)
+                                              : customer.Pets.OrderBy(p => p.Age);
+                    break;
+                case "species":
+                    orderedPets = descendente ? customer.Pets.OrderByDescending(p => p.Species)
+                                              : customer.Pets.OrderBy(p => p.Species);
+                    break;
+                default:
+                    Console.WriteLine("⚠ Invalid sorting criterion. Use 'name', 'age', or 'species'.");
+                    return;
+            }
+
+            Console.WriteLine($"\n🐾 Pets of {customer.Name} ordered by {criterio}:");
+            foreach (var pet in orderedPets)
+            {
+                Console.WriteLine(pet);
+            }
+        }
     }
 }
